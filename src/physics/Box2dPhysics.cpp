@@ -69,7 +69,7 @@ std::shared_ptr<Box2dObject> Box2dEngine::createBox2dObject(const std::string &l
                 return shape;
             }
         }
-        throw std::exception("Shape type unsupported");
+        throw std::invalid_argument("Shape type unsupported");
     };
 
     auto anchorPoint = getCenterAnchorPoint(o);

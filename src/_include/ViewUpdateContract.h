@@ -8,8 +8,8 @@ class Presenter {
 public:
     virtual std::function<void(float)> getUpdateSource() = 0;
 
-    void setUpdateReceiver(std::function<void(UpdateResult)> &receiver) {
-        onUpdateFinished = receiver;
+    void setUpdateReceiver(std::function<void(UpdateResult)> receiver) {
+        onUpdateFinished = std::move(receiver);
     }
 
 protected:

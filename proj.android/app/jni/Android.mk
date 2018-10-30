@@ -12,7 +12,6 @@ LOCAL_MODULE := MyGame_shared
 LOCAL_MODULE_FILENAME := libMyGame
 
 LOCAL_SRC_FILES := $(LOCAL_PATH)/hellocpp/main.cpp \
-                   $(LOCAL_PATH)/../../../src/AppDelegate.cpp \
                    $(LOCAL_PATH)/../../../src/AppDelegate.cpp\
                    $(LOCAL_PATH)/../../../src/Utils.cpp\
                    $(LOCAL_PATH)/../../../src/scenes/MainScene.cpp\

@@ -39,9 +39,15 @@ std::function<void(float)> ObstaclesPresenter::getUpdateSource() {
         auto groundObstacles = physics->getStaticLayer(LAYER_GROUND_OBSTACLES);
 
         { // Update positions and remove offscreen obstacles
-            auto extractKey = [](std::shared_ptr<PhysicalObject> o) -> int { return o->getId(); };
-            auto map = Utils::listToMap(groundObstacles,
-                                        (std::function<int(std::shared_ptr<PhysicalObject>)>) extractKey);
+            //auto extractKey = [](std::shared_ptr<PhysicalObject> o) -> int { return o->getId(); };
+            //auto map = Utils::listToMap(groundObstacles,
+            //                            (std::function<int(std::shared_ptr<PhysicalObject>)>) extractKey);
+
+			std::map<int, std::shared_ptr<PhysicalObject>> map;
+			for (auto const&t : groundObstacles)
+			{
+				map.insert({ t->getId(),t });
+			}
 
             obstacles.remove_if([this, &map](std::shared_ptr<Obstacle> o) -> bool {
                 if (auto physicalObject = map[o->getId()]) {

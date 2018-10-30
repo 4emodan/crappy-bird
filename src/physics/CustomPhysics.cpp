@@ -19,7 +19,15 @@ void CustomEngine::setStaticLayerVelocity(const std::string &layer, float speed)
 }
 
 void CustomEngine::setDynamicObjectAccelerationY(const std::string &layer, int id, float accelerationY) {
-    auto i = std::find_if(dynamicObjects.begin(), dynamicObjects.end(),
+	for (auto const &i : dynamicObjects) {
+		auto object = i.second;
+		if (object->getId() == id) {
+			object->setAccelerationY(accelerationY);
+			break;
+		}
+	}
+
+    /*auto i = std::find_if(dynamicObjects.begin(), dynamicObjects.end(),
                           [&id](auto &i) -> bool {
                               auto object = i.second;
                               return object->getId() == id;
@@ -27,7 +35,7 @@ void CustomEngine::setDynamicObjectAccelerationY(const std::string &layer, int i
     if (i != dynamicObjects.end()) {
         auto object = i->second;
         object->setAccelerationY(accelerationY);
-    }
+    }*/
 }
 
 void CustomEngine::update(float delta) {
