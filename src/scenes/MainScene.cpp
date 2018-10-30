@@ -27,10 +27,10 @@ bool MainScene::init() {
     auto center = Vec2(visibleSize.width / 2, visibleSize.height / 2);
 
     auto customMenuItem = MenuItemFont::create("Custom Physics", [=](Ref *sender) {
-        director->replaceScene(TransitionFade::create(FADE_TRANSITION_TIME, CustomPhysicsScene::create()));
+        director->pushScene(TransitionFade::create(FADE_TRANSITION_TIME, CustomPhysicsScene::create()));
     });
     auto box2dMenuItem = MenuItemFont::create("Box2D Physics", [=](Ref *sender) {
-        director->replaceScene(TransitionFade::create(FADE_TRANSITION_TIME, Box2dPhysicsScene::create()));
+        director->pushScene(TransitionFade::create(FADE_TRANSITION_TIME, Box2dPhysicsScene::create()));
     });
 
     auto menu = Menu::create(box2dMenuItem, customMenuItem, NULL);

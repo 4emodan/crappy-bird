@@ -17,10 +17,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
         director->setOpenGLView(glView);
     }
 
-    gameSettings = GameSettings::init(640, 480);
+    gameSettings = GameSettings::init(director->getVisibleSize().width, director->getVisibleSize().height);
 
     auto scene = MainScene::createScene();
-    director->runWithScene(scene);
+    director->pushScene(scene);
 
     return true;
 }

@@ -9,12 +9,11 @@ bool CustomPhysicsScene::init() {
     }
 
     physics = std::make_shared<CustomEngine>(CustomEngine());
-    physics->setCollisionListener([this](std::shared_ptr<Collision> c) {
-        if ((c->getLayerA() == "player" && c->getLayerB() == "ground_obstacles") ||
-            (c->getLayerB() == "player" && c->getLayerA() == "ground_obstacles")) {
-            _director->pause();
-        }
-    });
+	physics->setCollisionListener([this](std::shared_ptr<Collision> c) {
+		if (c->getLayerA() == "player" || c->getLayerB() == "player") {
+			_director->popScene();
+		}
+	});
 
     auto obstaclesLayer = getObstaclesLayer(std::static_pointer_cast<PhysicsEngine>(physics));
     this->addChild(obstaclesLayer, -1);

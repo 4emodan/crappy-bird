@@ -16,9 +16,8 @@ bool Box2dPhysicsScene::init() {
 
     physics = std::make_shared<Box2dEngine>(Box2dEngine(debugLayer));
     physics->setCollisionListener([this](std::shared_ptr<Collision> c) {
-        if ((c->getLayerA() == "player" && c->getLayerB() == "ground_obstacles") ||
-                (c->getLayerB() == "player" && c->getLayerA() == "ground_obstacles")) {
-            _director->pause();
+        if (c->getLayerA() == "player" || c->getLayerB() == "player") {
+			_director->popScene();
         }
     });
 
