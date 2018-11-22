@@ -6,7 +6,7 @@
 template<typename UpdateResult>
 class Presenter {
 public:
-    virtual std::function<void(float)> getUpdateSource() = 0;
+	virtual std::function<void(float)> getUpdateSource() = 0;
 
     void setUpdateReceiver(std::function<void(UpdateResult)> receiver) {
         onUpdateFinished = std::move(receiver);

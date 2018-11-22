@@ -21,6 +21,7 @@ public:
 
     cocos2d::Size obstaclePixelSize; // TODO move to some adaptive scale utility
     cocos2d::Size playerPixelSize; // TODO move to some adaptive scale utility
+    float groundHeight;
 
     float playerSpeedMps;
     float playerUpAcceleration;
@@ -37,18 +38,19 @@ private:
             const cocos2d::Size &physicalFrameSize,
             const cocos2d::Size &obstacleSize,
             const cocos2d::Size &playerSize,
+            float groundHeight,
             float playerSpeed,
             float playerUpAcceleration,
             float minSecondsBetweenObstacles,
             std::function<float(float)> pixelsToMeters,
             std::function<float(float)> metersToPixels) :
-
             gravity(gravity),
             pointsInMeter(pointsInMeter),
             frameSize(frameSize),
             physicalFrameSize(physicalFrameSize),
             obstaclePixelSize(obstacleSize),
             playerPixelSize(playerSize),
+            groundHeight(groundHeight),
             playerSpeedMps(playerSpeed),
             playerUpAcceleration(playerUpAcceleration),
             minSecondsBetweenObstacles(minSecondsBetweenObstacles),

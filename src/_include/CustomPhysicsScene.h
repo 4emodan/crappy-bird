@@ -4,6 +4,7 @@
 #include "_include/CustomPhysics.h"
 #include "_include/ObstaclesLayer.h"
 #include "_include/PlayerLayer.h"
+#include "_include/GroundLayer.h"
 #include "Utils.h"
 
 #ifndef AL_DEBUG

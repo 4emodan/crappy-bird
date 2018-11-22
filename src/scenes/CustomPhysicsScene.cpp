@@ -1,10 +1,11 @@
 #include "_include/CustomPhysicsScene.h"
+#include "_include/DebugLayer.h"
 
 USING_NS_CC;
 
 bool CustomPhysicsScene::init() {
     if (AL_DEBUG) {
-        debugLayer = Layer::create();
+        debugLayer = DebugLayer::create();
         this->addChild(debugLayer);
     }
 
@@ -20,6 +21,9 @@ bool CustomPhysicsScene::init() {
 
     auto playerLayer = getPlayerLayer(std::static_pointer_cast<PhysicsEngine>(physics));
     this->addChild(playerLayer, 1);
+
+	auto groundLayer = getGroundLayer(std::static_pointer_cast<PhysicsEngine>(physics));
+	this->addChild(groundLayer, -2);
 
     scheduleUpdate();
 

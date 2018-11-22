@@ -43,11 +43,10 @@ std::function<void(float)> ObstaclesPresenter::getUpdateSource() {
             //auto map = Utils::listToMap(groundObstacles,
             //                            (std::function<int(std::shared_ptr<PhysicalObject>)>) extractKey);
 
-			std::map<int, std::shared_ptr<PhysicalObject>> map;
-			for (auto const&t : groundObstacles)
-			{
-				map.insert({ t->getId(),t });
-			}
+            std::map<int, std::shared_ptr<PhysicalObject>> map;
+            for (auto const &t : groundObstacles) {
+                map.insert({t->getId(), t});
+            }
 
             obstacles.remove_if([this, &map](std::shared_ptr<Obstacle> o) -> bool {
                 if (auto physicalObject = map[o->getId()]) {
