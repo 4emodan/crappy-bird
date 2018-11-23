@@ -8,17 +8,52 @@ GroundPresenter::GroundPresenter(std::shared_ptr<PhysicsEngine> physics) {
 	this->physics = std::move(physics);
 	this->settings = GameSettings::instance();
 
-	addGround();
+	this->ground = createGround();
+	this->physics->addStaticObject(LAYER_GROUND, ground);
+
+
 }
 
 std::function<void(float)> GroundPresenter::getUpdateSource() {
-	return [this](float delta) { };
+	return [this](float delta) {
+		auto distance = settings->metersToPixels(settings->playerSpeedMps * delta);
+
+		// Update position and remove offscreen chunks
+		groundChunks.remove_if([&distance](std::shared_ptr<GroundChunk> chunk)-> bool {
+			const auto viewRect = Utils::moveRectX(chunk->getViewRect(), -distance);
+			chunk->setViewRect(viewRect);
+
+			if (viewRect.origin.x <= -viewRect.size.width) {
+				log("Ground chunk %d deleted", chunk->getId());
+				return true;
+			} else { return false; }
+			// return viewRect.origin.x <= -viewRect.size.width;
+		});
+
+		// Add chunks if needed
+		auto rightBorder = groundChunks.empty() ? 0.f : groundChunks.back()->getViewRect().getMaxX();
+		while (rightBorder < settings->frameSize.width) {
+			auto newChunk = std::make_shared<GroundChunk>(GroundChunk(incrementalId++,
+			                                                          cocos2d::Rect(
+				                                                          cocos2d::Vec2(rightBorder, 0.f),
+				                                                          settings->groundChunkPixelSize)));
+			groundChunks.push_back(newChunk);
+			rightBorder += settings->groundChunkPixelSize.width;
+		}
+
+		onUpdateFinished(groundChunks);
+	};
 }
 
-void GroundPresenter::addGround() const {
-	const auto groundRect = cocos2d::Rect(0, 0, settings->physicalFrameSize.width, settings->physicalFrameSize.height / 10.);
-	log("Physical height = %.2f", settings->physicalFrameSize.height);
-	log("Ground rect = [%.2f, %.2f, %.2f, %.2f]", groundRect.origin.x, groundRect.origin.y, groundRect.size.width, groundRect.size.height);
-	const auto ground = std::make_shared<Ground>(Ground(0, groundRect));
-	physics->addStaticObject(LAYER_GROUND, ground);
+std::shared_ptr<Ground> GroundPresenter::createGround() const {
+	const auto groundRect = cocos2d::Rect(0, 0, settings->physicalFrameSize.width,
+	                                      settings->physicalFrameSize.height / 10.);
+	return std::make_shared<Ground>(Ground(0, groundRect));
+}
+
+
+// Data classes
+
+void GroundChunk::setViewRect(const cocos2d::Rect& rect) {
+	this->rect = rect;
 }

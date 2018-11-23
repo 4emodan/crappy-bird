@@ -4,7 +4,8 @@
 
 class ViewObject {
 public:
-    virtual int getId() const = 0;
-
+	virtual ~ViewObject() = default;
+	
+	virtual int getId() const = 0;
     virtual cocos2d::Rect const getViewRect() const = 0;
 };

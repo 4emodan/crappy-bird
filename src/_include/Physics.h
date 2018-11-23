@@ -36,7 +36,8 @@ public:
 
 class PhysicalObject {
 public:
-    virtual int getId() const = 0;
+	virtual ~PhysicalObject() = default;
+	virtual int getId() const = 0;
 
     virtual cocos2d::Rect const getPhysicalRect() const = 0;
 

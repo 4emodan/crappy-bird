@@ -19,8 +19,10 @@ public:
     cocos2d::Size frameSize;
     cocos2d::Size physicalFrameSize;
 
-    cocos2d::Size obstaclePixelSize; // TODO move to some adaptive scale utility
-    cocos2d::Size playerPixelSize; // TODO move to some adaptive scale utility
+	// TODO move to some adaptive scale utility
+    cocos2d::Size obstaclePixelSize; 
+    cocos2d::Size playerPixelSize;
+	cocos2d::Size groundChunkPixelSize;
     float groundHeight;
 
     float playerSpeedMps;
@@ -38,6 +40,7 @@ private:
             const cocos2d::Size &physicalFrameSize,
             const cocos2d::Size &obstacleSize,
             const cocos2d::Size &playerSize,
+            const cocos2d::Size &groundChunkPixelSize,
             float groundHeight,
             float playerSpeed,
             float playerUpAcceleration,
@@ -50,6 +53,7 @@ private:
             physicalFrameSize(physicalFrameSize),
             obstaclePixelSize(obstacleSize),
             playerPixelSize(playerSize),
+            groundChunkPixelSize(groundChunkPixelSize),
             groundHeight(groundHeight),
             playerSpeedMps(playerSpeed),
             playerUpAcceleration(playerUpAcceleration),

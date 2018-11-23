@@ -24,6 +24,7 @@ std::shared_ptr<const GameSettings> GameSettings::init(int frameWidth, int frame
                     physicalFrameSize,
                     cocos2d::Size(50, 200),
                     cocos2d::Size(80, 100),
+                    cocos2d::Size(50, 50),
                     groundHeight,
                     playerSpeedMps,
                     upAcceleration,
