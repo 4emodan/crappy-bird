@@ -5,6 +5,8 @@
 #include "_include/ObstaclesLayer.h"
 #include "_include/PlayerLayer.h"
 #include "_include/GroundLayer.h"
+#include "_include/DebugLayer.h"
+#include "_include/BackgroundLayer.h"
 #include "Utils.h"
 
 #ifndef AL_DEBUG

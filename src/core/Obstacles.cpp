@@ -24,7 +24,7 @@ std::function<void(float)> ObstaclesPresenter::getUpdateSource() {
                         incrementalId++,
                         Rect(
                                 settings->frameSize.width,
-                                0,
+                                settings->groundHeight / 2.f,
                                 size.width,
                                 size.height
                         )

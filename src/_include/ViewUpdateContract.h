@@ -6,6 +6,7 @@
 template<typename UpdateResult>
 class Presenter {
 public:
+	virtual ~Presenter() = default;
 	virtual std::function<void(float)> getUpdateSource() = 0;
 
     void setUpdateReceiver(std::function<void(UpdateResult)> receiver) {

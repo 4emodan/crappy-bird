@@ -71,11 +71,13 @@ list(APPEND GAME_SOURCE
         src/core/GameSettings.cpp
         src/core/ViewUpdateContract.cpp
         src/core/Ground.cpp
+        src/core/Background.cpp
         src/physics/CustomPhysics.cpp
         src/physics/Box2dPhysics.cpp
         src/view/ObstaclesLayer.cpp
         src/view/PlayerLayer.cpp
 		src/view/GroundLayer.cpp
+		src/view/BackgroundLayer.cpp
         src/view/DebugLayer.cpp
         )
 list(APPEND GAME_HEADER
@@ -86,6 +88,7 @@ list(APPEND GAME_HEADER
         src/_include/Obstacles.h
         src/_include/Player.h
         src/_include/Ground.h
+        src/_include/Background.h
         src/_include/CustomPhysics.h
         src/_include/Box2dPhysics.h
         src/_include/Utils.h
@@ -93,6 +96,7 @@ list(APPEND GAME_HEADER
         src/_include/Physics.h
         src/_include/ObstaclesLayer.h
         src/_include/GroundLayer.h
+        src/_include/BackgroundLayer.h
         src/_include/PlayerLayer.h
         src/_include/ViewUpdateContract.h
         src/_include/Views.h
